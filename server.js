@@ -10,8 +10,15 @@ const methodOverride = require("method-override");
 
 // DATABASE CONNECTION
 // How to connect to the database either via heroku or locally
+const MONGODB_URI = process.env.MONGODB_URI;
+mongoose.set('strictQuery', true)
 
-
+// Connect to Mongo &
+// Fix Depreciation Warnings from Mongoose
+// May or may not need these depending on your Mongoose version
+mongoose.connect(MONGODB_URI , { 
+    useNewUrlParser: false,
+});
 
 // Mongo error/success
 const db = mongoose.connection
